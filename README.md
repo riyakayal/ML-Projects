@@ -1,2 +1,3 @@
 # ML-Projects
-Molecular Machine Learning
+![alt text](https://github.com/riyakayal/ML-Data-Generation/blob/main/docs/HPC ML.png?raw=true)
+A collection of HPC scale Molecular Machine Learning codes from scratch in python with different state-of-the-art techniques, fully CPU parallelised.
