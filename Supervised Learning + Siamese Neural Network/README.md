@@ -1,6 +1,7 @@
 # An RMSD prediction code for organic molecules with multiple conformers
+## Uses Supervised Learning + Siamese Neural Network
 
-## Requirements:
+### Requirements:
 Based on the imports throughout the scripts, here are all the requirements:
 ```bash
 pip install pandas numpy torch rdkit scikit-learn scipy matplotlib psutil
