@@ -1,0 +1,33 @@
+==================================================
+         RMSD Predictor — Run Summary
+==================================================
+Run date/time       : 2026-02-09 17:20:10
+Input CSV           : 99_molecules_unique.csv
+Molecules used      : 99
+Max atoms (with H)  : 77
+Total dataset pairs : 990
+Train pairs         : 792
+Val pairs           : 198
+
+--- Training ---
+Epochs run          : 185 / 200
+Best epoch          : 164
+Best val loss       : 0.120989
+Target loss         : 0.01
+Total training time : 1650.9s (27.51 min)
+Avg CPU usage       : 1551.4%
+Peak CPU usage      : 1647.5%
+RAM used (process)  : 663.4 MB
+
+--- Validation Metrics ---
+MAE:      0.2637 Å
+RMSE:     0.3478 Å
+R²:       0.7833
+Spearman: 0.8581
+
+--- Train Metrics ---
+MAE:      0.0331 Å
+RMSE:     0.0861 Å
+R²:       0.9883
+Spearman: 0.9977
+==================================================
