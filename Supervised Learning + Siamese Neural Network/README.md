@@ -1,22 +1,6 @@
 # An RMSD prediction code for organic molecules with multiple conformers
 ## Uses Supervised Learning + Siamese Neural Network
 
-### Requirements:
-Based on the imports throughout the scripts, here are all the requirements:
-```bash
-pip install pandas numpy torch rdkit scikit-learn scipy matplotlib psutil
-```
-If you're on a system where RDKit isn't available via pip directly (older environments), use:
-```bash
-pip install pandas numpy torch scikit-learn scipy matplotlib psutil
-conda install -c conda-forge rdkit
-```
-And if you're on a **shared HPC cluster** (for path like `/usr/users/username/miniconda3/`), you likely need:
-```bash
-pip install pandas numpy torch scikit-learn scipy matplotlib psutil --break-system-packages
-conda install -c conda-forge rdkit
-```
-
 ## To run:
 1) First generate n no. of unique organic molecules using RDKit.
    This generates two files n_molecules.csv and n_molecules_unique.csv.
