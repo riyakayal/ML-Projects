@@ -1,7 +1,7 @@
 
 # Author: Riya Kayal
 # Created: 15/11/2025
-# GNN version v2: 05/02/2026
+# GNN version v1: 05/02/2026
 
 ## Conformers were generated using RDKit ETKDGv3 and optimized with MMFF94 prior to RMSD calculation.
 ##
