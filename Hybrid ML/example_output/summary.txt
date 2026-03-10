@@ -1,0 +1,46 @@
+=================================================================
+   HOMO-LUMO Gap Predictor — Run Summary
+=================================================================
+Run date/time         : 2026-02-10 02:36:22
+Input file            : homolumo.csv
+Molecules loaded      : 560
+Molecules skipped     : 1
+
+--- Data Statistics (raw gaps) ---
+Gap min / max         : 0.6850 / 14.4870 eV
+Gap mean / std        : 5.0522 / 1.8708 eV
+Gap median            : 4.7810 eV
+
+--- Preprocessing ---
+Log-transform labels  : True
+Outlier cap           : 95th pct (8.6259 eV) → 23 labels capped
+Feature selection     : SelectKBest (k=200)
+Stratified split      : Yes (10 strata)
+Descriptor type       : Mordred (2D, ignore_3D=True)
+Raw descriptors       : 1370
+After SelectKBest     : 200
+Descriptor calc time  : 279.7s
+Train / Test size     : 448 / 112
+Stack min R² filter   : 0.6 (4 model(s) included)
+XGB search space      : standard
+
+--- Results — Test Set ---
+Model                                MAE    RMSE      R²  Spearman
+-----------------------------------------------------------------
+Baseline KRR (rbf)                0.7353  1.3220  0.4523    0.7463
+Tuned KRR (rbf)                   0.6299  1.1254  0.6031    0.8112
+Random Forest (tuned)             0.5692  0.8852  0.7545    0.8712
+XGBoost (tuned)                   0.5571  0.8724  0.7615    0.8853
+LightGBM (tuned)                  0.5626  0.8362  0.7809    0.8891
+Stacking ensemble                 0.5698  0.9220  0.7336    0.8650
+
+--- Hyperparameters ---
+Best KRR kernel       : rbf
+Best KRR alpha/gamma  : 0.01 / 0.003162
+Best RF params        : {'n_estimators': 500, 'min_samples_leaf': 2, 'max_features': 0.5, 'max_depth': 20}
+Best XGB params       : {'subsample': 0.9, 'reg_lambda': 1.0, 'reg_alpha': 0, 'n_estimators': 1000, 'max_depth': 5, 'learning_rate': 0.1, 'colsample_bytree': 0.6}
+Best LGB params       : {'subsample': 0.7, 'reg_lambda': 5.0, 'reg_alpha': 0.1, 'num_leaves': 31, 'n_estimators': 1000, 'min_child_samples': 5, 'max_depth': -1, 'learning_rate': 0.1, 'colsample_bytree': 1.0}
+
+--- Runtime ---
+Total time            : 3477.4s (57.96 min)
+=================================================================
