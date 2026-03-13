@@ -8,24 +8,24 @@ pip install xgboost lightgbm shap
 
 ---
 
-## Purpose
+### Purpose
 
 Predicts HOMO-LUMO gaps (eV) from SMILES strings using Mordred 2D molecular descriptors and a suite of machine learning models, with full hyperparameter tuning, ensemble stacking, SHAP interpretability, and diagnostic plots.
 
 ---
 
-## Pipeline Overview
+### Pipeline Overview
 
-### 1. Data Loading & Cleaning
+#### 1. Data Loading & Cleaning
 Reads `homolumo.csv` containing SMILES and DFT-computed gaps. Molecules with invalid or problematic SMILES (e.g. containing `<`) are skipped. All molecules are sanitized with RDKit before descriptor calculation.
 
-### 2. Data Distribution Plot
+#### 2. Data Distribution Plot
 Generates a histogram and box plot of the raw gap distribution before any modelling, saved as `plot0_data_distribution.jpg`. The 95th percentile cap threshold is marked on the histogram.
 
-### 3. Mordred Descriptor Calculation
+#### 3. Mordred Descriptor Calculation
 Computes ~1600 2D molecular descriptors. Descriptors are cleaned by converting errors to NaN, filling with zero, clipping to ±1×10⁶ to prevent overflow, and dropping zero-variance columns. NumPy overflow warnings from Mordred's internals are suppressed during calculation.
 
-### 4. Preprocessing
+#### 4. Preprocessing
 
 Three settings at the top of the script control all preprocessing:
 
@@ -39,22 +39,22 @@ The train/test split (80/20) is **stratified** by gap value — gaps are binned 
 
 ---
 
-## Models Trained
+### Models Trained
 
 | Step | Model | Tuning Method |
 |---|---|---|
-| 8a | Baseline KRR (RBF, α=0.1, γ=0.01) | Fixed — reference point |
-| 8b | Tuned KRR (RBF + Laplacian kernels) | GridSearchCV: 7 α × 7 γ × 2 kernels × 5-fold CV |
-| 8c | Random Forest | RandomizedSearchCV: `n_estimators`, `max_features`, `min_samples_leaf`, `max_depth` |
-| 8d | XGBoost | RandomizedSearchCV + early stopping on held-out eval set |
-| 8e | LightGBM | RandomizedSearchCV: `num_leaves`, `learning_rate`, `subsample`, regularisation |
-| 8f | Stacking ensemble | Ridge meta-learner trained on out-of-fold predictions from all above models |
+| a | Baseline KRR (RBF, α=0.1, γ=0.01) | Fixed — reference point |
+| b | Tuned KRR (RBF + Laplacian kernels) | GridSearchCV: 7 α × 7 γ × 2 kernels × 5-fold CV |
+| c | Random Forest | RandomizedSearchCV: `n_estimators`, `max_features`, `min_samples_leaf`, `max_depth` |
+| d | XGBoost | RandomizedSearchCV + early stopping on held-out eval set |
+| e | LightGBM | RandomizedSearchCV: `num_leaves`, `learning_rate`, `subsample`, regularisation |
+| f | Stacking ensemble | Ridge meta-learner trained on out-of-fold predictions from all above models |
 
 XGBoost and LightGBM are wrapped in `try/except` blocks — if not installed, they are skipped gracefully with a `pip install` message.
 
 ---
 
-## Evaluation Metrics
+### Evaluation Metrics
 
 All models are evaluated on the held-out test set (20%) using four metrics, all reported in eV-space after inverse log-transform where applicable:
 
@@ -65,7 +65,7 @@ All models are evaluated on the held-out test set (20%) using four metrics, all 
 
 ---
 
-## SHAP Interpretability
+### SHAP Interpretability
 
 After training, `shap.TreeExplainer` computes feature contributions for both the Random Forest and the best-performing boosting model (whichever of XGBoost/LightGBM has the higher R²). Three plots are produced:
 
@@ -77,7 +77,7 @@ Install with: `pip install shap`
 
 ---
 
-## Output Files
+### Output Files
 
 All outputs are saved to `output_krr/`:
 
@@ -99,7 +99,7 @@ All outputs are saved to `output_krr/`:
 
 ---
 
-## Dependencies
+### Dependencies
 
 ```
 rdkit
